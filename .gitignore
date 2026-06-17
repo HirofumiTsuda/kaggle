@@ -1,3 +1,7 @@
+# Your own ignore rules for your project can be placed here. For a more comprehensive set of rules, see
+*.csv
+*.db
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
