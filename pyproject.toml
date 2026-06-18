@@ -15,4 +15,6 @@ build-backend = "hatchling.build"
 [tool.uv.workspace]
 members = [
     "titanic",
+    "playground-series-s6e5",
+    "tools",
 ]
