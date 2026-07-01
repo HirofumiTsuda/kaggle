@@ -1,13 +1,15 @@
 import pathlib
+
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 from src.prediction import (
-    predict,
-    cross_validate,
     PredictionParameters,
+    cross_validate,
+    predict,
 )
 
 TARGET_COLUMN = "PitNextLap"
+
 
 def load_data() -> tuple[pd.DataFrame, pd.DataFrame]:
     data_dir = pathlib.Path(__file__).parents[1] / "data"
@@ -37,13 +39,10 @@ def preprocess_data(
 
 
 def submission(prediction: pd.Series, test_raw: pd.DataFrame) -> None:
-    submission_path = (
-        pathlib.Path(__file__).parents[1] / "submission" / "submission.csv"
-    )
-    submission_df = pd.DataFrame(
-        {"id": test_raw["id"], TARGET_COLUMN: prediction}
-    )
+    submission_path = pathlib.Path(__file__).parents[1] / "submission" / "submission.csv"
+    submission_df = pd.DataFrame({"id": test_raw["id"], TARGET_COLUMN: prediction})
     submission_df.to_csv(submission_path, index=False)
+
 
 def main():
     train_data, test_x = load_data()
@@ -60,7 +59,6 @@ def main():
     print("Predictions:", predictions.head())
     print("Cross-validation results:", validation_results)
     submission(predictions, test_raw)
-    
 
 
 if __name__ == "__main__":
